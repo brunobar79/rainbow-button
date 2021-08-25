@@ -72,8 +72,14 @@
   },
   "dependencies": {
     "@walletconnect/browser-utils": "^1.5.4",
+    "@walletconnectv2/client": "npm:@walletconnect/client@2.0.0-beta.17",
+    "@walletconnectv2/types": "npm:@walletconnect/types@2.0.0-beta.17",
     "framer-motion": "^4.1.17",
     "qrcode": "^1.4.4",
     "styled-components": "^5.3.0"
+  },
+  "resolutions": {
+    "@walletconnectv2/**/@walletconnect/types": "npm:@walletconnect/types@2.0.0-beta.17",
+    "@walletconnectv2/**/@walletconnect/utils": "npm:@walletconnect/utils@2.0.0-beta.17"
   }
 }

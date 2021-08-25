@@ -1,4 +1,4 @@
-// import WalletConnectClient from '@walletconnectv2/client';
+import WalletConnectClient from '@walletconnectv2/client';
 
 /**
  * Go to rainbow app via deeplink
@@ -13,9 +13,9 @@ export const goToRainbow = (): void => {
  * @param client - WalletConnectClient
  * @returns - Session topics
  */
-// export const getClientPairings = (client: WalletConnectClient): string[] => {
-//   return client?.session?.topics || [];
-// };
+export const getClientPairings = (client: WalletConnectClient): string[] => {
+  return client?.session?.topics || [];
+};
 
 const fromEIP55Format = (chain: string) => chain?.replace('eip155:', '');
 

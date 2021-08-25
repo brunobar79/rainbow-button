@@ -1,7 +1,13 @@
 import React from 'react';
+import ConnectButtonV2 from './components/button/ConnectButtonV2';
 import ConnectButtonV1 from './components/button/ConnectButtonV1';
+import WalletConnectClient from '@walletconnectv2/client';
 import WalletConnect from '@walletconnect/client';
-
+import {
+  ClientOptions,
+  ClientTypes,
+  SessionTypes,
+} from '@walletconnectv2/types';
 import { IWalletConnectOptions } from '@walletconnect/types';
 import { goToRainbow } from './utils';
 import {
@@ -10,6 +16,35 @@ import {
 } from './constants';
 import rainbow_icon from '../assets/images/rainbow-icon.png';
 import rainbow from '../assets/images/rainbow.png';
+
+export interface ExperimentalProps {
+  clientOptions: ClientOptions;
+  clientConnectParams: ClientTypes.ConnectParams;
+  onClientInitialized: (client: WalletConnectClient) => void;
+  onSessionStarted: (session: SessionTypes.Settled) => void;
+  customButton?: any;
+  animate?: boolean;
+}
+
+export const RainbowButtonExperimental = ({
+  clientOptions,
+  clientConnectParams,
+  onClientInitialized,
+  onSessionStarted,
+  customButton,
+  animate,
+}: ExperimentalProps) => {
+  return (
+    <ConnectButtonV2
+      clientOptions={clientOptions}
+      clientConnectParams={clientConnectParams}
+      onClientInitialized={onClientInitialized}
+      onSessionStarted={onSessionStarted}
+      customButton={customButton}
+      animate={animate}
+    />
+  );
+};
 
 export interface Props {
   chainId: number | undefined;
@@ -44,6 +79,8 @@ export const assets = {
 
 export const utils = {
   goToRainbow,
+  getClientPairings,
+  getAddressAndChainIdFromAccount,
 };
 
 export const constants = {
