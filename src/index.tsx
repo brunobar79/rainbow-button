@@ -1,15 +1,16 @@
-import React from 'react';
-import ConnectButtonV1 from './components/button/ConnectButtonV1';
 import WalletConnect from '@walletconnect/client';
 
+// eslint-disable-next-line import/no-unresolved
 import { IWalletConnectOptions } from '@walletconnect/types';
-import { goToRainbow } from './utils';
-import {
-  SUPPORTED_TEST_CHAIN_IDS,
-  SUPPORTED_MAIN_CHAIN_IDS,
-} from './constants';
+import React from 'react';
 import rainbow_icon from '../assets/images/rainbow-icon.png';
 import rainbow from '../assets/images/rainbow.png';
+import ConnectButtonV1 from './components/button/ConnectButtonV1';
+import {
+  SUPPORTED_MAIN_CHAIN_IDS,
+  SUPPORTED_TEST_CHAIN_IDS,
+} from './constants';
+import { goToRainbow } from './utils';
 
 export interface Props {
   chainId: number | undefined;
@@ -28,18 +29,18 @@ export const RainbowButton = ({
 }: Props) => {
   return (
     <ConnectButtonV1
+      animate={animate}
       chainId={chainId}
       connectorOptions={connectorOptions}
-      onConnectorInitialized={onConnectorInitialized}
       customButton={customButton}
-      animate={animate}
+      onConnectorInitialized={onConnectorInitialized}
     />
   );
 };
 
 export const assets = {
-  rainbow_icon: rainbow_icon,
   rainbow: rainbow,
+  rainbow_icon: rainbow_icon,
 };
 
 export const utils = {
@@ -47,6 +48,6 @@ export const utils = {
 };
 
 export const constants = {
-  SUPPORTED_TEST_CHAIN_IDS,
   SUPPORTED_MAIN_CHAIN_IDS,
+  SUPPORTED_TEST_CHAIN_IDS,
 };

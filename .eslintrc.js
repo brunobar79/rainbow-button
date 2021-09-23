@@ -1,12 +1,11 @@
 module.exports = {
-  "extends": [
-    "react-app",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+  extends: ['rainbow'],
+  overrides: [
+    {
+      files: ['example/**'],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
   ],
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  }
-}
+};

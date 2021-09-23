@@ -78,7 +78,7 @@ class Fountain {
 
     document?.getElementById(RAINBOW_BUTTON_ID)?.addEventListener(
       move,
-      e => {
+      (e) => {
         this.mouseX = e instanceof MouseEvent ? e.pageX : e.touches[0].pageX;
         this.mouseY = e instanceof MouseEvent ? e.pageY : e.touches[0].pageY;
       },
@@ -117,9 +117,8 @@ class Fountain {
     const direction = Math.random() <= 0.5 ? -1 : 1;
 
     const particle = document.createElement('span');
-    particle.innerHTML = this.variants[
-      Math.floor(Math.random() * this.variants.length)
-    ];
+    particle.innerHTML =
+      this.variants[Math.floor(Math.random() * this.variants.length)];
     particle.classList.add('particle');
 
     particle.setAttribute(
@@ -139,27 +138,27 @@ class Fountain {
     document?.documentElement?.appendChild(particle);
 
     this.particles.push({
+      direction,
       element: particle,
+      left,
       size,
       speedHorz,
       speedUp,
-      spinVal,
       spinSpeed,
+      spinVal,
       top,
-      left,
-      direction,
     });
   }
 
   updateParticles() {
-    this.particles.forEach(p => {
+    this.particles.forEach((p) => {
       p.left = p.left - p.speedHorz * p.direction;
       p.top = p.top - p.speedUp;
       p.speedUp = Math.min(p.size, p.speedUp - 1);
       p.spinVal = p.spinVal + p.spinSpeed;
 
       if (p.top > this.height - p.size) {
-        this.particles = this.particles.filter(o => o !== p);
+        this.particles = this.particles.filter((o) => o !== p);
         p.element.remove();
       }
 

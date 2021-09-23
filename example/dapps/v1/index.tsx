@@ -1,23 +1,26 @@
+/* eslint-disable no-console */
 import 'react-app-polyfill/ie11';
-import * as React from 'react';
+import { constants, RainbowButton, utils } from '@rainbow-me/rainbow-button';
+import { isMobile } from '@walletconnect/browser-utils';
 import * as encUtils from 'enc-utils';
-import { useCallback, useState, useEffect, useMemo } from 'react';
+import * as React from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { ActionButton, Button, Wrapper } from '../../styled';
 import { supportedMainChainsInfo } from '../constants';
-import useWalletConnectState from '../v1/hooks';
 import { formatTestTransaction, renderAddress } from '../helpers/accounts';
 import { eip712 } from '../helpers/eip712';
-import { RainbowButton, utils, constants } from '@rainbow-me/rainbow-button';
-import { Button, ActionButton, Wrapper } from '../../styled';
-import { isMobile } from '@walletconnect/browser-utils';
+import useWalletConnectState from '../v1/hooks';
 
 const { goToRainbow } = utils;
 const { SUPPORTED_MAIN_CHAIN_IDS } = constants;
 
 const images = {
+  /* eslint-disable import/no-commonjs */
   arbitrum: require('../../assets/images/arbitrum.png'),
   ethereum: require('../../assets/images/ethereum.png'),
   optimism: require('../../assets/images/optimism.png'),
   polygon: require('../../assets/images/polygon.png'),
+  /* eslint-enable import/no-commonjs */
 };
 
 const Dapp = () => {
@@ -31,10 +34,10 @@ const Dapp = () => {
   } = useWalletConnectState();
   const [selectedChain, setSelectedChain] = useState<string | null>(null);
 
-  const selectChain = useCallback(chain => setSelectedChain(chain), []);
+  const selectChain = useCallback((chain) => setSelectedChain(chain), []);
 
   const onConnectorInitialized = useCallback(
-    connector => setConnector(connector),
+    (connector) => setConnector(connector),
     [] /* eslint-disable-line react-hooks/exhaustive-deps */
   );
 
@@ -68,6 +71,7 @@ const Dapp = () => {
       setChainId(chainId);
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     connector.on('disconnect', (error, payload) => {
       if (error) {
         throw error;
@@ -97,9 +101,10 @@ const Dapp = () => {
     }
   }, [connector, accounts]);
 
-  const disconnect = useCallback(async () => connector?.killSession(), [
-    connector,
-  ]);
+  const disconnect = useCallback(
+    async () => connector?.killSession(),
+    [connector]
+  );
 
   const signPersonalMessage = useCallback(async () => {
     if (!connector) return;
@@ -146,13 +151,13 @@ const Dapp = () => {
         {!selectedChain && (
           <Wrapper>
             {Object.values(SUPPORTED_MAIN_CHAIN_IDS).map(
-              chain =>
+              (chain) =>
                 supportedMainChainsInfo[chain]?.name && (
                   <Button key={chain} onClick={() => selectChain(chain)}>
                     <img
                       alt="network-icon"
-                      src={images[supportedMainChainsInfo[chain]?.value]}
                       className={`network-icon ${supportedMainChainsInfo[chain]?.value}`}
+                      src={images[supportedMainChainsInfo[chain]?.value]}
                     />
                     {supportedMainChainsInfo[chain]?.name}
                   </Button>
@@ -187,22 +192,19 @@ const Dapp = () => {
           <p className="text-center">Account: {renderAddress(accounts?.[0])}</p>
         </Wrapper>
         <Wrapper>
-          <ActionButton key={'sendTransaction'} onClick={sendTransaction}>
-            {'sendTransaction'}
+          <ActionButton key="sendTransaction" onClick={sendTransaction}>
+            sendTransaction
           </ActionButton>
-          <ActionButton
-            key={'signPersonalMessage'}
-            onClick={signPersonalMessage}
-          >
-            {'signPersonalMessage'}
+          <ActionButton key="signPersonalMessage" onClick={signPersonalMessage}>
+            signPersonalMessage
           </ActionButton>
-          <ActionButton key={'signTypedData'} onClick={signTypedData}>
-            {'signTypedData'}
+          <ActionButton key="signTypedData" onClick={signTypedData}>
+            signTypedData
           </ActionButton>
         </Wrapper>
         <Wrapper>
-          <ActionButton key={'disconnect'} onClick={disconnect}>
-            {'Disconnect'}
+          <ActionButton key="disconnect" onClick={disconnect}>
+            Disconnect
           </ActionButton>
         </Wrapper>
       </div>

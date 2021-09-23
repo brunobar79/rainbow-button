@@ -121,11 +121,11 @@ const QRCode = ({
         style={{
           height: 0,
           position: 'relative',
-          top: logoPosition,
           textAlign: 'center',
+          top: logoPosition,
         }}
       >
-        <img height={logoSize} width={logoSize} src={rainbowOg} alt="" />
+        <img alt="" height={logoSize} src={rainbowOg} width={logoSize} />
       </div>
       <svg height={size} width={size}>
         <defs>

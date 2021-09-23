@@ -23,7 +23,7 @@ const QRCard = ({
   size?: number;
 }) => {
   return (
-    <Content size={size} showQR={showQR}>
+    <Content showQR={showQR} size={size}>
       <QRCode size={size} value={value} />
     </Content>
   );

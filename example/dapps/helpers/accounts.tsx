@@ -7,7 +7,7 @@ export async function formatTestTransactionExperimental(account: string) {
   // value
   const value = '0x0';
 
-  const tx = { from: address, to: address, data: '0x', gasLimit, value };
+  const tx = { data: '0x', from: address, gasLimit, to: address, value };
 
   return tx;
 }
@@ -19,7 +19,7 @@ export async function formatTestTransaction(address: string) {
   // value
   const value = '0x0';
 
-  const tx = { from: address, to: address, data: '0x', gasLimit, value };
+  const tx = { data: '0x', from: address, gasLimit, to: address, value };
 
   return tx;
 }

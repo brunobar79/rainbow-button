@@ -57,37 +57,37 @@ const QRExpandedState = ({
               as={motion.div}
               exit={{ scale: 0.8, y: '100vh' }}
               initial={{ scale: 0.8, y: '100vh' }}
-              style={{ pointerEvents: 'auto' }}
               qr
+              style={{ pointerEvents: 'auto' }}
               transition={springConfig}
             >
               <Column
                 onClick={() => setIsQRCodeOpen(false)}
-                style={{ justifyContent: 'center', height: '100%' }}
+                style={{ height: '100%', justifyContent: 'center' }}
               >
                 <TitleText>
-                  <span role="img" aria-labelledby="emoji">
+                  <span aria-labelledby="emoji" role="img">
                     📲
                   </span>{' '}
                   Scan to connect to Rainbow
                 </TitleText>
-                <Container onClick={proxy => proxy.stopPropagation()}>
-                  <QRCode value={value} size={380} logoSize={100} />
+                <Container onClick={(proxy) => proxy.stopPropagation()}>
+                  <QRCode logoSize={100} size={380} value={value} />
                 </Container>
                 <DownloadContainer>
                   <TitleText subtitle>
-                    <span role="img" aria-labelledby="emoji">
+                    <span aria-labelledby="emoji" role="img">
                       👇
                     </span>{' '}
                     Don’t have the app yet?{' '}
-                    <span role="img" aria-labelledby="emoji">
+                    <span aria-labelledby="emoji" role="img">
                       👇
                     </span>
                   </TitleText>
                   <div style={{ display: 'flex', flexDirection: 'row' }}>
                     <DownloadButton
                       href="https://apps.apple.com/us/app/rainbow-ethereum-wallet/id1457119021"
-                      onClick={proxy => proxy.stopPropagation()}
+                      onClick={(proxy) => proxy.stopPropagation()}
                       target="_blank"
                     >
                       <div style={{ marginRight: 6 }}>

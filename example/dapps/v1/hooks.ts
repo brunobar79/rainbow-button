@@ -2,18 +2,18 @@ import WalletConnect from '@walletconnect/client';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 import {
-  setConnector as rawSetConnector,
   setAccounts as rawSetAccounts,
   setChainId as rawSetChainId,
+  setConnector as rawSetConnector,
 } from '../store';
 
 const selector = createSelector(
-  ({ connector, accounts, chainId }) => ({ connector, accounts, chainId }),
+  ({ connector, accounts, chainId }) => ({ accounts, chainId, connector }),
   ({ connector, accounts, chainId }) => {
     return {
-      connector,
       accounts,
       chainId,
+      connector,
     };
   }
 );
@@ -31,9 +31,9 @@ export default function useWalletConnectState() {
     dispatch(rawSetChainId(chainId));
 
   return {
-    connector,
     accounts,
     chainId,
+    connector,
     setAccounts,
     setChainId,
     setConnector,

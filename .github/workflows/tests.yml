@@ -1,3 +1,4 @@
+---
 name: tests
 
 on: [pull_request, push]
@@ -12,11 +13,12 @@ jobs:
         node: ['lts/*']
 
     steps:
-    - uses: actions/checkout@v2.3.4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: yarn
-    - run: yarn lint
-    - run: yarn test
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn
+      - run: cd example && yarn && cd ..
+      - run: yarn lint
+      - run: yarn test

@@ -6,24 +6,24 @@ const SET_ACCOUNTS = 'SET_ACCOUNTS';
 const SET_CHAIN_ID = 'SET_CHAIN_ID';
 
 export const setConnector = (connector: WalletConnect | null) => ({
-  type: SET_CONNECTOR,
   payload: connector,
+  type: SET_CONNECTOR,
 });
 
 export const setAccounts = (accounts: string[] | null) => ({
-  type: SET_ACCOUNTS,
   payload: accounts,
+  type: SET_ACCOUNTS,
 });
 
 export const setChainId = (chainId: string | null) => ({
-  type: SET_CHAIN_ID,
   payload: chainId,
+  type: SET_CHAIN_ID,
 });
 
 const INITIAL_STATE = {
-  connector: undefined,
   accounts: undefined,
   chainId: undefined,
+  connector: undefined,
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
